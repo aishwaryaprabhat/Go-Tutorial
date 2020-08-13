@@ -53,6 +53,8 @@ A package that can do the following:
 ![](images/Screenshot%202020-08-13%20at%203.46.27%20PM.png)
 
 ### Variable Declaration
+- Go is statically typed vs dynamically typed eg Python, JS
+- We need to define a type for a variable
 ```
 package main
 
@@ -63,3 +65,21 @@ func main(){
 	fmt.Println(card)
 }
 ```
+- Basic data types
+![](images/Screenshot%202020-08-13%20at%203.52.13%20PM.png)
+- Letting compiler figure out the type
+
+```
+package main
+
+import "fmt"
+
+func main(){
+	// var card string = "Ace of spades"
+	var card:= "Ace of spades"
+	fmt.Println(card)
+}
+```
+- For reassigning value we don't have to use a colon
+
+### Functions and Return Types
