@@ -153,3 +153,132 @@ func newCard() string {
 	return "Five of Diamonds"
 }
 ```
+![](images/Screenshot%202020-08-13%20at%205.17.15%20PM.png)
+
+### OO approach vs Go approach
+![](images/Screenshot%202020-08-13%20at%205.20.03%20PM.png)
+![](images/Screenshot%202020-08-13%20at%205.20.12%20PM.png)
+
+### Defining a new type
+```
+package main
+
+//Create a new type of 'deck'
+//which is a slice of strings
+
+type deck []string 
+
+```
+```
+package main
+
+import "fmt"
+
+func main(){
+	cards := deck{newCard(), newCard(), "Ace of Diamonds"}
+	
+	cards = append(cards, "Six of spades")
+
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
+	
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+### Receiver Functions - 'Extending' functionality of new type
+
+```
+package main
+import "fmt"
+
+//Create a new type of 'deck'
+//which is a slice of strings
+
+type deck []string 
+
+func (d deck) print(){
+	for i, card := range d{
+		fmt.Println(i, card)
+	}
+}
+```
+```
+package main
+
+// import "fmt"
+
+func main(){
+	cards := deck{newCard(), newCard(), "Ace of Diamonds"}
+	
+	cards = append(cards, "Six of spades")
+
+	cards.print()
+	
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+![](images/Screenshot%202020-08-13%20at%205.29.46%20PM.png)
+![](images/Screenshot%202020-08-13%20at%205.30.11%20PM.png)
+
+### Double loop 
+- We use "_" to let go know that we created a variable but we don't intend to use it
+```
+package main
+import "fmt"
+
+//Create a new type of 'deck'
+//which is a slice of strings
+
+type deck []string 
+
+func newDeck() deck {
+	cards := deck{}
+
+	cardSuits := []string{"Spades", "Hearts", "Diamonds", "Clubs"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}
+
+	for _, suit := range cardSuits{
+		for _, value := range cardValues{
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+
+	return cards
+}
+
+func (d deck) print(){
+	for _, card := range d{
+		fmt.Println(card)
+	}
+}
+```
+
+### Slice Range Syntax + Multiple Returns
+![](images/Screenshot%202020-08-13%20at%205.46.45%20PM.png)
+
+```
+//return two different slices
+func deal(d deck, handSize int) (deck, deck){
+	return d[:handSize], d[handSize:]
+}
+```
+```
+func main(){
+	
+	cards := newDeck()
+
+	hand, remainingDeck := deal(cards, 5)
+	hand.print()
+	remainingDeck.print()
+	
+}
+```
+
+### Type conversion (deck to string)
