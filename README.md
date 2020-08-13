@@ -83,3 +83,73 @@ func main(){
 - For reassigning value we don't have to use a colon
 
 ### Functions and Return Types
+- Need to define 
+```
+package main
+
+import "fmt"
+
+func main(){
+	var card = newCard()
+	fmt.Println(card)
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+
+### Slices (re-sizable Array)
+- Needs a type defined as well
+```
+package main
+
+import "fmt"
+
+func main(){
+	cards := []string{newCard(), newCard(), "Ace of Diamonds"}
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+- Appending: returns a new slice
+```
+package main
+
+import "fmt"
+
+func main(){
+	cards := []string{newCard(), newCard(), "Ace of Diamonds"}
+	
+	cards = append(cards, "Six of spades")
+	fmt.Println(cards)
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+
+### Looping (over slice)
+```
+package main
+
+import "fmt"
+
+func main(){
+	cards := []string{newCard(), newCard(), "Ace of Diamonds"}
+	
+	cards = append(cards, "Six of spades")
+
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
+	
+}
+
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
