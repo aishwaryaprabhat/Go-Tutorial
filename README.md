@@ -48,3 +48,18 @@ There are two types of packages:
 ![](images/Screenshot%202020-08-13%20at%203.41.33%20PM.png)
    
 
+## Project Overview
+A package that can do the following:
+![](images/Screenshot%202020-08-13%20at%203.46.27%20PM.png)
+
+### Variable Declaration
+```
+package main
+
+import "fmt"
+
+func main(){
+	var card string = "Ace of spades"
+	fmt.Println(card)
+}
+```
