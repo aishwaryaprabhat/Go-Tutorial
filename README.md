@@ -282,3 +282,14 @@ func main(){
 ```
 
 ### Type conversion (deck to string)
+![](images/Screenshot%202020-08-13%20at%206.11.02%20PM.png)
+- deck->string->byte slice
+
+![](images/Screenshot%202020-08-13%20at%206.12.03%20PM.png)
+
+```
+func (d deck) toString() string{
+	// []string(d) //convert to slice of string
+	return strings.Join([]string(d), ",")
+}
+```
