@@ -42,6 +42,9 @@ There are two types of packages:
 2. [Golang standard packages](http://golang.org/pkg)
 
 ### 4. What 'func'?
+1. Functions just like functions in any other programming language
+
 ### 5. How is the main.go organized?
+![](images/Screenshot%202020-08-13%20at%203.41.33%20PM.png)
    
 
