@@ -38,6 +38,9 @@ There are two types of packages:
    2. Good place to put reusable logic
 
 ### 3. What does 'import fmt mean'?
+1. Importing libraries to do stuff main can't do
+2. [Golang standard packages](http://golang.org/pkg)
+
 ### 4. What 'func'?
 ### 5. How is the main.go organized?
    
