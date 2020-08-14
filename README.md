@@ -586,7 +586,7 @@ func (p person) print() {
 	fmt.Printf("%+v", p)
 }
 ```
-
+## Pointers
 ### Pointers in Go (Why p.updateName doesn't work)
 ```
 package main
@@ -678,3 +678,68 @@ func (pointerToPerson *person) updateName(newFirstName string) {
 }
 
 ```
+
+### Pointer Operations
+![](images/Screenshot%202020-08-14%20at%202.06.57%20PM.png)
+![](images/Screenshot%202020-08-14%20at%202.08.44%20PM.png)
+![](images/Screenshot%202020-08-14%20at%202.12.26%20PM.png)
+
+### Pointer Shortcuts
+```
+package main
+
+import (
+	"fmt"
+)
+
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+
+	
+	jim.updateName("Aish")
+	jim.print()
+
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
+}
+
+func (pointerToPerson *person) updateName(newFirstName string) {
+	(*pointerToPerson).firstName = newFirstName
+}
+
+```
+![](images/Screenshot%202020-08-14%20at%202.16.23%20PM.png)
+
+### Gotchas With Pointers
+![](images/Screenshot%202020-08-14%20at%202.22.25%20PM.png)
+- Seems like there is no need for pointers to do a 'deep copy' sort of thing
+- Arrays vs slices
+![](images/Screenshot%202020-08-14%20at%202.23.28%20PM.png)
+![](images/Screenshot%202020-08-14%20at%202.24.03%20PM.png)
+![](images/Screenshot%202020-08-14%20at%202.25.17%20PM.png)
+- Reference Types do not require pointers for deep copy sort of functionality, you can alter them directly
+![](images/Screenshot%202020-08-14%20at%202.25.55%20PM.png)
+
+## Maps
+![](images/Screenshot%202020-08-14%20at%203.19.08%20PM.png)
