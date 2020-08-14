@@ -293,3 +293,20 @@ func (d deck) toString() string{
 	return strings.Join([]string(d), ",")
 }
 ```
+
+- byte slice->string->deck
+```
+func newDeckFromFile(filename string) deck {
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		// Option 1 - log the error and default to newDeck()
+		// Option 2 - log the error and quit program
+		fmt.Println("Error:", err)
+		os.Exit(1)
+
+	}
+	s := strings.Split(string(bs), ",")
+
+	return deck(s)
+}
+```
