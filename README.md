@@ -382,3 +382,23 @@ func TestSaveToDeckAndDeckFromFile(t *testing.T) {
 
 
 ```
+
+## Organizing Data with Structs
+![](images/Screenshot%202020-08-14%20at%2012.00.45%20PM.png)
+![](images/Screenshot%202020-08-14%20at%2012.01.09%20PM.png)
+
+- Create new struct
+```
+package main
+
+type person struct {
+	firstName string
+	lastName  string
+}
+
+func main() {
+	
+}
+
+```
+- Create a new 'instance' of struct
