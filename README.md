@@ -475,5 +475,206 @@ func main() {
 
 ```
 
-### Embedding one struct into another
+### Structception: Embedding one struct into another
 ![](images/Screenshot%202020-08-14%20at%2012.17.12%20PM.png)
+
+```
+package main
+
+import "fmt"
+
+type person struct {
+	firstName string
+	lastName  string
+	contact   contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contact: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+
+	fmt.Printf("%+v", jim)
+
+}
+
+```
+- Also valid
+
+```
+package main
+
+import "fmt"
+
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+
+	fmt.Printf("%+v", jim)
+
+}
+
+
+```
+
+
+### Structs with Receiver Functions
+```
+package main
+
+import (
+	"fmt"
+)
+
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+
+	
+	jim.print()
+
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
+}
+```
+
+### Pointers in Go (Why p.updateName doesn't work)
+```
+package main
+
+import (
+	"fmt"
+)
+
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+	jim.updateName("Aish")
+	jim.print()
+
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
+}
+
+func (p person) updateName(newFirstName string) {
+	p.firstName = newFirstName
+}
+
+```
+![](images/Screenshot%202020-08-14%20at%202.00.16%20PM.png)
+![](images/Screenshot%202020-08-14%20at%202.01.14%20PM.png)
+- Go does pass by value
+- How to do it correctly
+```
+package main
+
+import (
+	"fmt"
+)
+
+type person struct {
+	firstName string
+	lastName  string
+	contactInfo
+}
+
+type contactInfo struct {
+	email   string
+	zipCode string
+}
+
+func main() {
+
+	jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{
+			email:   "jim@gmail.com",
+			zipCode: "120514",
+		},
+	}
+
+	jimPointer := &jim
+	jimPointer.updateName("Aish")
+	jim.print()
+
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p)
+}
+
+func (pointerToPerson *person) updateName(newFirstName string) {
+	(*pointerToPerson).firstName = newFirstName
+}
+
+```
