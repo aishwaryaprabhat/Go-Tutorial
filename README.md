@@ -743,3 +743,110 @@ func (pointerToPerson *person) updateName(newFirstName string) {
 
 ## Maps
 ![](images/Screenshot%202020-08-14%20at%203.19.08%20PM.png)
+
+### Declaration ways
+- Simple
+```
+package main
+
+
+import "fmt"
+
+func main() {
+	colors := map[string]string{
+		"red": "12039i10239i01923",
+		"green": "12039uijndkcjn",
+
+	}
+}
+```
+- 0 value initialization
+```
+package main
+
+import "fmt"
+
+func main() {
+
+	var colors map[string]string
+
+	// colors := map[string]string{
+	// 	"red":   "12039i10239i01923",
+	// 	"green": "12039uijndkcjn",
+	// }
+
+	fmt.Printf("%+v", colors)
+}
+
+```
+- Another 0 init
+```
+package main
+
+import "fmt"
+
+func main() {
+
+	colors := make(map[string]string)
+	// var colors map[string]string
+
+	// colors := map[string]string{
+	// 	"red":   "12039i10239i01923",
+	// 	"green": "12039uijndkcjn",
+	// }
+
+	fmt.Printf("%+v", colors)
+}
+
+```
+```
+package main
+
+import "fmt"
+
+func main() {
+
+	colors := make(map[string]string)
+	// var colors map[string]string
+
+	// colors := map[string]string{
+	// 	"red":   "12039i10239i01923",
+	// 	"green": "12039uijndkcjn",
+	// }
+
+	colors["white"] = ";wdkjnaksjdnfajsndf;ijns"
+
+	fmt.Printf("%+v", colors)
+}
+
+```
+- Maps dont have . syntax like structs
+- Delete 
+
+### Iterating over a map
+```
+package main
+
+import "fmt"
+
+func main() {
+
+	colors := map[string]string{
+		"red":   "wkdna;djnf;kasdjn",
+		"white": "asijdnpaijsdnfaijsdnf",
+		"green": "aksdjnc;kajsnd;kajn",
+	}
+
+	printMap(colors)
+}
+
+func printMap(c map[string]string) {
+	for color, hex := range c {
+		fmt.Println(color, hex)
+	}
+}
+
+```
+
+### Maps vs Structs
+![](images/Screenshot%202020-08-14%20at%203.28.36%20PM.png)
