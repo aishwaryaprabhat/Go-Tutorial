@@ -312,6 +312,7 @@ func newDeckFromFile(filename string) deck {
 ```
 
 ## Shuffling cards (random number generation, swapping in a slice)
+- Pseudo random
 ```
 func (d deck) shuffle() {
 
@@ -322,4 +323,15 @@ func (d deck) shuffle() {
 	}
 
 }
+```
+
+## Generating random numbers
+- Use time -> use it as seed value -> use new Rand
+```
+func generateRandomNum(l int) int {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+	return r.Intn(l)
+}
+
 ```
