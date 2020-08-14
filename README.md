@@ -387,7 +387,7 @@ func TestSaveToDeckAndDeckFromFile(t *testing.T) {
 ![](images/Screenshot%202020-08-14%20at%2012.00.45%20PM.png)
 ![](images/Screenshot%202020-08-14%20at%2012.01.09%20PM.png)
 
-- Create new struct
+### Create new struct
 ```
 package main
 
@@ -401,4 +401,51 @@ func main() {
 }
 
 ```
-- Create a new 'instance' of struct
+### Create a new 'instance' of struct (nasty)
+- Nasty
+```
+package main
+
+type person struct {
+	firstName string
+	lastName  string
+}
+
+func main() {
+	alex := person{"Alex", "Anderson"}
+}
+
+```
+- Okay
+```
+
+package main
+
+type person struct {
+	firstName string
+	lastName  string
+}
+
+func main() {
+	alex := person{firstName: "Alex", lastName: "Anderson"}
+}
+```
+- Empty struct - Go assigns 0 values
+![](images/Screenshot%202020-08-14%20at%2012.07.47%20PM.png)
+```
+package main
+
+import "fmt"
+
+type person struct {
+	firstName string
+	lastName  string
+}
+
+func main() {
+	var alex person
+	// alex := person{firstName: "Alex", lastName: "Anderson"}
+	fmt.Println(alex)
+}
+
+```
