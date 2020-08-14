@@ -6,6 +6,7 @@ func main() {
 
 	// fmt.Println(cards.toString())
 	// cards.saveToFile("my_cards")
+	cards.shuffle()
 	cards.print()
 }
 

@@ -310,3 +310,16 @@ func newDeckFromFile(filename string) deck {
 	return deck(s)
 }
 ```
+
+## Shuffling cards (random number generation, swapping in a slice)
+```
+func (d deck) shuffle() {
+
+	for i := range d {
+		newPosition := rand.Intn(len(d) - 1)
+
+		d[newPosition], d[i] = d[i], d[newPosition]
+	}
+
+}
+```
