@@ -335,3 +335,23 @@ func generateRandomNum(l int) int {
 }
 
 ```
+
+### Testing with Go
+![](images/Screenshot%202020-08-14%20at%2011.25.37%20AM.png)
+![](images/Screenshot%202020-08-14%20at%2011.28.22%20AM.png)
+
+```
+package main
+
+import "testing"
+
+func TestNewDeck(t *testing.T) {
+	d := newDeck()
+
+	if len(d) != 16 {
+		t.Errorf("Expected deck length of 16, but got %v", len(d))
+	}
+
+}
+
+```
