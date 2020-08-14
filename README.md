@@ -474,3 +474,6 @@ func main() {
 }
 
 ```
+
+### Embedding one struct into another
+![](images/Screenshot%202020-08-14%20at%2012.17.12%20PM.png)
