@@ -850,3 +850,6 @@ func printMap(c map[string]string) {
 
 ### Maps vs Structs
 ![](images/Screenshot%202020-08-14%20at%203.28.36%20PM.png)
+
+## Interfaces
+![](images/Screenshot%202020-08-20%20at%201.45.39%20PM.png)
