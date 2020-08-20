@@ -971,3 +971,4 @@ func main() {
 
 ```
 ![](images/Screenshot%202020-08-20%20at%203.14.04%20PM.png)
+-  We can 'nest'/embed interfaces within one another
