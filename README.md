@@ -888,3 +888,47 @@ func (spanishBot) getGreeting() string {
 }
 
 ```
+
+-  Refactored to use interfaces 
+
+```
+package main
+
+import "fmt"
+
+type englishBot struct{}
+type spanishBot struct{}
+type bot interface {
+	getGreeting() string
+}
+
+func main() {
+	eb := englishBot{}
+	sb := spanishBot{}
+	printGreeting(eb)
+	printGreeting(sb)
+}
+
+func (englishBot) getGreeting() string {
+	return "Hi there!"
+}
+
+// func printGreeting(eb englishBot) {
+// 	fmt.Println(eb.getGreeting())
+// }
+
+// func printGreeting(sb spanishBot) {
+// 	fmt.Println(sb.getGreeting())
+// }
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
+}
+
+func (spanishBot) getGreeting() string {
+	return "Hola Amigo!"
+}
+
+```
+- Explanation
+![](images/Screenshot%202020-08-20%20at%202.07.47%20PM.png)
+- In other words interfaces allow englishBot and spanishBot to have another type called bot, as long as they have a getGteeting function that returns string
