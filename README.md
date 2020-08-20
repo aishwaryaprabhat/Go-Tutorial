@@ -932,3 +932,20 @@ func (spanishBot) getGreeting() string {
 - Explanation
 ![](images/Screenshot%202020-08-20%20at%202.07.47%20PM.png)
 - In other words interfaces allow englishBot and spanishBot to have another type called bot, as long as they have a getGteeting function that returns string
+
+### Rules for Interfaces
+- We can define both the input and output type of the functions we want to be interfaced
+![](images/Screenshot%202020-08-20%20at%202.57.39%20PM.png)
+- We can define multiple functions in the interface
+```
+type bot interface {
+	getGreeting() string
+	getVersion() string
+	respondToUser(user) string
+}
+```
+- We cannot createa an 'object'/value from an interface type. We can only do that using concrete types
+![](images/Screenshot%202020-08-20%20at%203.01.10%20PM.png)
+- ![](images/Screenshot%202020-08-20%20at%203.02.35%20PM.png)
+
+### Simple project to demo interfaces
