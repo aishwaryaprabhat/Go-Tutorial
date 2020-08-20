@@ -949,3 +949,25 @@ type bot interface {
 - ![](images/Screenshot%202020-08-20%20at%203.02.35%20PM.png)
 
 ### Simple project to demo interfaces
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
+
+func main() {
+	resp, err := http.Get("http://google.com")
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	fmt.Println(resp)
+}
+
+```
+![](images/Screenshot%202020-08-20%20at%203.14.04%20PM.png)
