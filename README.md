@@ -853,3 +853,38 @@ func printMap(c map[string]string) {
 
 ## Interfaces
 ![](images/Screenshot%202020-08-20%20at%201.45.39%20PM.png)
+- Interfaces make it easier to re-use code for different types without having to re-type
+
+![](images/Screenshot%202020-08-20%20at%201.52.18%20PM.png)
+
+- Bad way of writing since need to repeat the printGreeting function
+```
+package main
+
+import "fmt"
+
+type englishBot struct{}
+type spanishBot struct{}
+
+func main() {
+	eb := englishBot{}
+	sb := spanishBot{}
+}
+
+func (englishBot) getGreeting() string {
+	return "Hi there!"
+}
+
+func printGreeting(eb englishBot) {
+	fmt.Println(eb.getGreeting())
+}
+
+func printGreeting(sb spanishBot) {
+	fmt.Println(sb.getGreeting())
+}
+
+func (spanishBot) getGreeting() string {
+	return "Hola Amigo!"
+}
+
+```
