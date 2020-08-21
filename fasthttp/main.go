@@ -2,24 +2,20 @@ package main
 
 import (
 	"fmt"
-	"log"
 
-	"github.com/buaazp/fasthttprouter"
+	routing "github.com/qiangxue/fasthttp-routing"
 	"github.com/valyala/fasthttp"
 )
 
-func Index(ctx *fasthttp.RequestCtx, _ fasthttprouter.Params) {
-	fmt.Fprint(ctx, "Welcome!\n")
-}
-
-func Hello(ctx *fasthttp.RequestCtx, ps fasthttprouter.Params) {
-	fmt.Fprintf(ctx, "hello, %s!\n", ps.ByName("name"))
-}
-
 func main() {
-	router := fasthttprouter.New()
-	router.GET("/", Index)
-	router.GET("/hello/:name", Hello)
+	router := routing.New()
 
-	log.Fatal(fasthttp.ListenAndServe(":8080", router.Handler))
+	router.Get("/", getHangler)
+
+	panic(fasthttp.ListenAndServe(":8080", router.HandleRequest))
+}
+
+func getHangler(c *routing.Context) error {
+	fmt.Fprintf(c, "Hello, world!")
+	return nil
 }
