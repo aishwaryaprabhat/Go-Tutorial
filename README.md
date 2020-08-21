@@ -1066,3 +1066,23 @@ func checkLink(link string) {
 }
 
 ```
+- What is happening
+![](images/Screenshot%202020-08-21%20at%2011.16.53%20AM.png)
+
+- What we want instead is 
+![](images/Screenshot%202020-08-21%20at%2011.17.56%20AM.png)
+
+- How we are going to do it using go routines
+![](images/Screenshot%202020-08-21%20at%2011.22.31%20AM.png)
+- If a call is blocking, control is passed back to main routine so that some other go routine can be spun up and do its thing
+- ![](images/Screenshot%202020-08-21%20at%2011.24.11%20AM.png)
+- ![](images/Screenshot%202020-08-21%20at%2011.24.47%20AM.png)
+
+- Go routines on one CPU 
+![](images/Screenshot%202020-08-21%20at%2011.26.16%20AM.png)
+
+- Go routines on multiple cores
+![](images/Screenshot%202020-08-21%20at%2011.28.05%20AM.png)
+
+- Concurrency is not parallelism
+![](images/Screenshot%202020-08-21%20at%2011.30.14%20AM.png)
