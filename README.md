@@ -1136,3 +1136,98 @@ func checkLink(link string) {
 
 #### How to send data over channels
 ![](images/Screenshot%202020-08-21%20at%2011.39.33%20AM.png)
+
+- Receiving messages from a channel is a blocking call
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	c := make(chan string) //create a blank channel
+
+	for _, link := range links {
+		go checkLink(link, c)
+	}
+
+	fmt.Println(<-c)
+}
+
+func checkLink(link string, c chan string) {
+	_, err := http.Get(link)
+	if err != nil {
+		fmt.Println(link, "might be down!")
+		c <- "Might be down I think"
+		return
+	}
+
+	fmt.Println(link, "is up!")
+	c <- "Yup its up"
+}
+
+```
+
+Output:
+```
+http://google.com is up!
+Yup its up
+```
+- The reason why this is buggy and stops after Google is because
+![](images/Screenshot%202020-08-21%20at%2011.50.51%20AM.png)
+
+### Receiving messages over channels
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	c := make(chan string) //create a blank channel
+
+	for _, link := range links {
+		go checkLink(link, c)
+	}
+
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
+
+}
+
+func checkLink(link string, c chan string) {
+	_, err := http.Get(link)
+	if err != nil {
+		fmt.Println(link, "might be down!")
+		c <- "Might be down I think"
+		return
+	}
+
+	fmt.Println(link, "is up!")
+	c <- "Yup its up"
+}
+
+```
