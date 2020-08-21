@@ -1296,3 +1296,25 @@ for i := 0; i < len(links); i++ {
 		fmt.Println(<-c)
 	}
 ```
+
+### Function Literal (similar to lambda function in Python)
+```
+for l := range c {
+
+		go func() {
+			time.Sleep(5 * time.Second)
+			checkLink(l, c)
+		}()
+	}
+```
+- This will not work because l is defined outside the scope of the functional literal 
+- Correct way of doing it
+```
+for l := range c {
+
+		go func(l string) {
+			time.Sleep(5 * time.Second)
+			checkLink(l, c)
+		}(l)
+	}
+```
