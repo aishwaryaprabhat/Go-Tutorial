@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	routing "github.com/qiangxue/fasthttp-routing"
 	"github.com/valyala/fasthttp"
@@ -16,6 +17,9 @@ func main() {
 }
 
 func getHangler(c *routing.Context) error {
+	start := time.Now()
 	fmt.Fprintf(c, "Hello, world!")
+	duration := time.Since(start)
+	fmt.Println(duration)
 	return nil
 }
