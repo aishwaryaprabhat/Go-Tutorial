@@ -1318,3 +1318,5 @@ for l := range c {
 		}(l)
 	}
 ```
+- We never try to share variables between go routines (especially between main and child routines)
+- We always either pass them as variables or we use channels
