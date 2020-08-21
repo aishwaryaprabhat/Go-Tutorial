@@ -972,3 +972,53 @@ func main() {
 ```
 ![](images/Screenshot%202020-08-20%20at%203.14.04%20PM.png)
 -  We can 'nest'/embed interfaces within one another
+
+### Using Read Function to read the google home page html
+
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"os"
+)
+
+func main() {
+	resp, err := http.Get("http://google.com")
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	bs := make([]byte, 999999)
+	resp.Body.Read(bs)
+
+	fmt.Println(string(bs))
+}
+
+```
+- Doing the above in one line using io.Copy
+```
+package main
+
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
+
+func main() {
+	resp, err := http.Get("http://google.com")
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	io.Copy(os.Stdout, resp.Body)
+}
+
+```
