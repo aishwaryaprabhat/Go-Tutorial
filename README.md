@@ -1086,3 +1086,4 @@ func checkLink(link string) {
 
 - Concurrency is not parallelism
 ![](images/Screenshot%202020-08-21%20at%2011.30.14%20AM.png)
+![](images/Screenshot%202020-08-21%20at%2011.31.27%20AM.png)
