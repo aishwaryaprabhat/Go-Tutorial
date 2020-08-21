@@ -1022,3 +1022,47 @@ func main() {
 }
 
 ```
+![](images/Screenshot%202020-08-21%20at%2010.05.30%20AM.png)
+![](images/Screenshot%202020-08-21%20at%2010.06.11%20AM.png)
+
+
+## Channels & Go Routines
+
+### Project
+![](images/Screenshot%202020-08-21%20at%2011.10.24%20AM.png)
+
+- Without routines and channels
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	for _, link := range links {
+		checkLink(link)
+	}
+}
+
+func checkLink(link string) {
+	_, err := http.Get(link)
+	if err != nil {
+		fmt.Println(link, "might be down!")
+		return
+	}
+
+	fmt.Println(link, "is up!")
+}
+
+```
