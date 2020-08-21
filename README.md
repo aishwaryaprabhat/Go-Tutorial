@@ -1231,3 +1231,68 @@ func checkLink(link string, c chan string) {
 }
 
 ```
+
+- Keep checking
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	c := make(chan string) //create a blank channel
+
+	for _, link := range links {
+		go checkLink(link, c)
+	}
+
+	for {
+		go checkLink(<-c, c)
+	}
+
+}
+
+func checkLink(link string, c chan string) {
+	_, err := http.Get(link)
+	if err != nil {
+		fmt.Println(link, "might be down!")
+		c <- link
+		return
+	}
+
+	fmt.Println(link, "is up!")
+	c <- link
+}
+
+```
+
+### Alternate for loop
+- Infinite for loop
+```
+for {
+		go checkLink(<-c, c)
+	}
+```
+same as 
+```
+for l := range c{
+		go checkLink(l, c)
+	}
+```
+- for i in range
+```
+for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
+```
