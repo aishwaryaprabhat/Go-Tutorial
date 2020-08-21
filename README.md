@@ -1090,3 +1090,49 @@ func checkLink(link string) {
 
 - Default Go routine (bug!)
 ![](images/Screenshot%202020-08-21%20at%2011.32.30%20AM.png)
+
+```
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+
+	links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	for _, link := range links {
+		go checkLink(link)
+	}
+}
+
+func checkLink(link string) {
+	_, err := http.Get(link)
+	if err != nil {
+		fmt.Println(link, "might be down!")
+		return
+	}
+
+	fmt.Println(link, "is up!")
+}
+
+```
+- This doesn't work because the main go routine ends before the child routines complete their work
+- We need to use channels - way to communicate between go routines
+
+### Channels
+- Allows communication between go routines
+![](images/Screenshot%202020-08-21%20at%2011.36.15%20AM.png)
+- Channels are typed so all messages sent to a channel must be of the same type
+![](images/Screenshot%202020-08-21%20at%2011.36.45%20AM.png)
+
+#### How to send data over channels
+![](images/Screenshot%202020-08-21%20at%2011.39.33%20AM.png)
