@@ -12,6 +12,7 @@ func main() {
 	router := routing.New()
 
 	router.Get("/", getHangler)
+	router.Post("/post", getHangler)
 
 	panic(fasthttp.ListenAndServe(":8080", router.HandleRequest))
 }
