@@ -19,11 +19,15 @@ func main() {
 	// 	ch2 <- "ch2"
 	// }()
 
-	select {
-	case m1 := <-ch1:
-		fmt.Println(m1)
-	case <-time.After(2 * time.Second):
-		fmt.Println("timeout")
+	for {
+		select {
+		case m1 := <-ch1:
+			fmt.Println(m1)
+			return
+		default:
+			// time.Sleep(1 * time.Second)
+			fmt.Println("No message yet")
+		}
 	}
 
 }

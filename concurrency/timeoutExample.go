@@ -10,7 +10,7 @@ func main() {
 	// ch2 := make(chan string)
 
 	go func() {
-		time.Sleep(1 * time.Second)
+		time.Sleep(5 * time.Second)
 		ch1 <- "ch1"
 	}()
 
@@ -22,7 +22,7 @@ func main() {
 	select {
 	case m1 := <-ch1:
 		fmt.Println(m1)
-	case <-time.After(2 * time.Second):
+	case <-time.After(1 * time.Second):
 		fmt.Println("timeout")
 	}
 
